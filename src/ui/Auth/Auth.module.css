@@ -1,0 +1,92 @@
+.form label {
+  display: flex;
+  margin: 10px 0;
+}
+
+.form span {
+  min-width: 70px;
+}
+
+.form button {
+  cursor: pointer;
+}
+
+.paper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 366px;
+  height: 485px;
+  background-color: #30364E !important;
+  border-radius: 10px !important;
+}
+
+.paperEntry{
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 440px;
+  background-color: #1D2031 !important;
+  border-radius: 10px !important;
+}
+
+.title {
+  color: white;
+  font-size: 14px;
+  margin: 3%;
+  text-align: center;
+}
+
+.welcome {
+  color: white;
+  font-size: 40px;
+  margin: 10%;
+  text-align: center;
+}
+
+.inputColor{
+  color: white !important;
+}
+
+.inputStyle{
+  background: linear-gradient(90deg, #26293C 0%, #1A1B27 100%);
+  border-radius: 23px !important;
+}
+
+.button{
+  left: 28.5%;
+  background-color: #6DC995 !important;
+  border-radius: 30px !important;
+  width: 11em;
+  margin-top: 2em !important;
+}
+
+.h1{
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 200;
+  line-height: 40px;
+  color: #46484B;
+}
+
+.h1Rigth{
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 200;
+  line-height: 40px;
+  color: #46484B;
+  margin-left: 4em;
+}
+
+.check{
+  color: #46484B !IMPORTANT;
+  margin: 0.5em !important;
+}
+
+.containerInputs{
+  width: 95%;
+  margin: 1em;
+}
