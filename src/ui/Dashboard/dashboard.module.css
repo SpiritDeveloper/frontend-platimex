@@ -1,0 +1,23 @@
+.h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.h5 {
+  margin: 1em;
+}
+
+.paper {
+  background-color: aliceblue;
+}
+
+.button {
+  margin: 0.5em !important;
+  max-width: 5em;
+  max-height: 1.7em;
+  border-radius: 1em !important;
+  font-weight: 700 !important;
+}

@@ -1,17 +1,23 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from 'react-router-dom';
+import history from './utils/history';
 
-import { Auth } from "./ui/Auth";
-import { User } from "./ui/User";
-import { Front } from "./ui/Front";
+import { Auth } from './ui/Auth';
+import { Dashboard } from './ui/Dashboard';
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <div className="app">
         <Switch>
-          <Route path="/auth" component={Auth} />
-          <Route path="/user" component={User} />
-          <Route path="/" component={Auth} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              history.push('/auth');
+            }}
+          />
+          <Route exact path="/auth" component={Auth} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </div>
     </Router>
