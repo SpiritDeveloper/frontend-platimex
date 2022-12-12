@@ -11,6 +11,7 @@ import moment from 'moment';
 import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
 interface Column {
   id:
@@ -87,7 +88,7 @@ const columns: readonly Column[] = [
     id: 'assigned',
     label: 'Assigned',
     minWidth: 120,
-    show: false,
+    show: true,
   },
 ];
 
@@ -153,7 +154,7 @@ const rows = [
   ),
   createData(
     '2',
-    6548511,
+    6548512,
     'Internal',
     moment(new Date('Fri, 09 Dec 2022 10:43:03 GMT')).format(
       'YYYY-MM-DD HH:mm'
@@ -170,7 +171,7 @@ const rows = [
   ),
   createData(
     '3',
-    6548511,
+    6548513,
     'Internal',
     moment(new Date('Fri, 09 Dec 2022 10:43:03 GMT')).format(
       'YYYY-MM-DD HH:mm'
@@ -187,7 +188,7 @@ const rows = [
   ),
   createData(
     '4',
-    6548511,
+    6548514,
     'Internal',
     moment(new Date('Fri, 09 Dec 2022 10:43:03 GMT')).format(
       'YYYY-MM-DD HH:mm'
@@ -204,7 +205,7 @@ const rows = [
   ),
   createData(
     '5',
-    6548511,
+    6548515,
     'Internal',
     moment(new Date('Fri, 09 Dec 2022 10:43:03 GMT')).format(
       'YYYY-MM-DD HH:mm'
@@ -221,7 +222,7 @@ const rows = [
   ),
   createData(
     '6',
-    6548511,
+    6548516,
     'Internal',
     moment(new Date('Fri, 09 Dec 2022 10:43:03 GMT')).format(
       'YYYY-MM-DD HH:mm'
@@ -250,8 +251,6 @@ type Buttons = {
 };
 
 export function Dashboard() {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [select, setSelect] = useState('all');
   const [buttonSelected, setButtonSelected] = useState<Buttons>({
     all: { backgroundColor: '#332634', color: '#7B536B' },
@@ -348,10 +347,18 @@ export function Dashboard() {
         </Paper>
       </div>
       <div id="pagination">
-        <Paper sx={{ backgroundColor: '#26293C' }}>
+        <Paper sx={{ backgroundColor: '#26293C', color: 'white !important' }}>
           <Pagination
             shape="circular"
-            count={page * rowsPerPage + rowsPerPage}
+            sx={{
+              button: {
+                color: '#ffffff',
+              },
+              '.css-1v2lvtn-MuiPaginationItem-root': {
+                color: '#ffffff',
+              },
+            }}
+            count={10}
             siblingCount={1}
           />
         </Paper>
@@ -381,10 +388,14 @@ export function Dashboard() {
                             fontStyle: 'normal',
                             fontSize: '10px',
                             fontWeight: 700,
+                            borderBottom: 'none',
                           }}
                           key={column.id}
                           align={column.align}
-                          style={{ minWidth: column.minWidth }}
+                          style={{
+                            minWidth: column.minWidth,
+                            borderBottom: 'none !important',
+                          }}
                         >
                           {column.label}
                         </TableCell>
@@ -398,36 +409,47 @@ export function Dashboard() {
                     borderBottomStyle: 'none',
                   }}
                 >
-                  {rows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      return row.assigned === select ? (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.tpid}
-                          sx={{
-                            backgroundColor: '#212435',
-                          }}
-                        >
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return column.show ? (
-                              <TableCell
-                                key={column.id}
-                                align={column.align}
-                                style={{ color: 'white' }}
-                              >
-                                {column.format && typeof value === 'number'
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            ) : null;
-                          })}
-                        </TableRow>
-                      ) : null;
-                    })}
+                  {rows.map((row) => {
+                    return row.assigned === select ? (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.tpid}
+                        sx={{
+                          backgroundColor: '#212435',
+                        }}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return column.show ? (
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              style={{
+                                color: 'white',
+                                borderBottom: 'none',
+                                fontSize: '.8em',
+                                margin: '1em',
+                              }}
+                            >
+                              {value === 'all' ? (
+                                <Button variant="text">
+                                  <PersonAddAltIcon />
+                                </Button>
+                              ) : value === 'co' ? (
+                                <Button variant="text">co</Button>
+                              ) : value === 'mx' ? (
+                                <Button variant="text">mx</Button>
+                              ) : (
+                                value
+                              )}
+                            </TableCell>
+                          ) : null;
+                        })}
+                      </TableRow>
+                    ) : null;
+                  })}
                 </TableBody>
               </Table>
             </TableContainer>
