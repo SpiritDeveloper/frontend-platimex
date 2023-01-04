@@ -1,15 +1,26 @@
-export async function loadUser() {
-  return;
+import {
+  getAllTransactions,
+  unassignTransaction,
+  assignedTransaction,
+  me,
+} from '../api/dashboard';
+
+export async function getTransactions() {
+  const transactions = await getAllTransactions();
+  return transactions;
 }
 
-export async function login(data: any) {
-  return;
+export async function unassign(uuid: string) {
+  const response = await unassignTransaction(uuid);
+  return response.success;
 }
 
-export async function register(data: any) {
-  return;
+export async function assigned(uuid: string, name: string, area: string) {
+  const response = await assignedTransaction(uuid, name, area);
+  return response.success;
 }
 
-export async function logout() {
-  return;
+export async function who_i_am() {
+  const response = await me();
+  return response.payload;
 }

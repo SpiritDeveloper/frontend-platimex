@@ -6,7 +6,7 @@ import storage from '../utils/storage';
 function authRequestInterceptor(config: AxiosRequestConfig) {
   const token = storage.getToken();
   if (token) {
-    config.headers!.authorization = `${token}`;
+    config.headers!.Authorization = `Bearer ${token}`;
   }
   config.headers!.Accept = 'application/json';
   return config;
